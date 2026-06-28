@@ -69,3 +69,9 @@ desktop.ini
 tmp/
 temp/
 barsegformer/SegFormer/work_dirs/
+__pycache__/
+*.pyc
+cichlidID/**/checkpoints/
+cichlidID/**/notes/
+*.ipynb
+*.docx
