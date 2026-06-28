@@ -10,8 +10,8 @@ A two-stage computer vision pipeline for closed-set individual re-identification
 
 This repository contains the full implementation of a fish re-identification framework built around two components:
 
-1. **BarSegFormer** — a custom SegFormer-based semantic segmentation model that detects the vertical bar patterns on cichlid fish bodies.
-2. **CichlidID** — a modified DINOv2 (ViT-S/14) model for closed-set individual identification, with three input variants evaluated.
+1. **BarSegFormer** - a custom SegFormer-based semantic segmentation model that detects the vertical bar patterns on cichlid fish bodies.
+2. **CichlidID** - a modified DINOv2 (ViT-S/14) model for closed-set individual identification, with three input variants evaluated.
 
 The pipeline works as follows:
 
@@ -57,7 +57,7 @@ cichlid-reid/
 
 A modified SegFormer-B1 with four custom additions: a bar-aware stem with parallel horizontal/vertical convolutions, local depthwise convolutions after each encoder stage, a U-shaped skip-connection decoder, and edge supervision during training.
 
-- Best checkpoint: `iter_18000.pth` — **88.51% mIoU**
+- Best checkpoint: `iter_18000.pth` - **88.51% mIoU**
 - Reached baseline SegFormer's final performance by iteration 2,000
 - → [Setup & training instructions](barsegformer/README.md)
 
@@ -136,6 +136,6 @@ If you use this code, please cite:
 ## Acknowledgements
 
 This work builds on:
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) — OpenMMLab
-- [DINOv2](https://github.com/facebookresearch/dinov2) — Meta AI Research
-- [SegFormer](https://github.com/NVlabs/SegFormer) — NVIDIA
+- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) - OpenMMLab
+- [DINOv2](https://github.com/facebookresearch/dinov2) - Meta AI Research
+- [SegFormer](https://github.com/NVlabs/SegFormer) - NVIDIA
