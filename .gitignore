@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+CichlidID_env/
+venv/
+.venv/
+env/
+
+# Conda
+*.conda
+
+# PyTorch checkpoints & weights
+*.pth
+*.pt
+*.ckpt
+checkpoints/
+work_dirs/
+
+# Data
+data/
+data_224/
+*.jpg
+*.jpeg
+*.png
+*.CR3
+*.cr3
+
+# Logs & outputs
+*.log
+log/
+logs/
+results/
+notes/
+tf_logs/
+wandb/
+runs/
+
+# MMSegmentation generated
+mmdet_cache/
+.mim/
+
+# Jupyter notebooks (optional: remove this line if you want to keep them)
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+*.bak
+*.tmp
+tmp/
+temp/
+barsegformer/SegFormer/work_dirs/
