@@ -1,4 +1,4 @@
-# CichlidReID: Non-Invasive Individual Re-Identification of Cichlid Fish
+# # CichlidReID: A Segmentation-Guided Foundation Model Framework for Non-Invasive Individual Fish Re-Identification
 
 A two-stage computer vision pipeline for closed-set individual re-identification of cichlid fish using segmentation-guided visual features.
 
@@ -123,11 +123,11 @@ Developed and tested on:
 If you use this code, please cite:
 
 ```bibtex
-@mastersthesis{shaik2025cichlidreID,
+@mastersthesis{shaik2026cichlidreID,
   author = {Akram Shaik},
-  title  = {Non-Invasive Individual Re-Identification of Cichlid Fish Using Computer Vision},
+  title  = {Segmentation-guided foundation model framework for non-invasive individual fish re-identification},
   school = {University of Helsinki},
-  year   = {2025}
+  year   = {2026}
 }
 ```
 
