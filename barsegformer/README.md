@@ -31,7 +31,24 @@ L_total = CrossEntropy(pred, gt) + 0.4 × BCE(edge_pred, edge_gt)
 - Conda
 - CUDA 12.1
 
-### Environment
+### 1. Clone MMSegmentation
+
+MMSegmentation is not included in this repository. Clone it next to the `SegFormer/` folder:
+
+```bash
+cd barsegformer
+git clone https://github.com/open-mmlab/mmsegmentation.git
+```
+
+Your folder structure should look like this:
+
+```
+barsegformer/
+├── mmsegmentation/
+└── SegFormer/
+```
+
+### 2. Create the environment
 
 From the repo root:
 
@@ -40,10 +57,10 @@ conda env create -f ../environment_segmentation.yml
 conda activate segformer
 ```
 
-Then install the local MMSegmentation package:
+### 3. Install MMSegmentation
 
 ```bash
-cd barsegformer
+cd barsegformer/SegFormer
 pip install -e .
 ```
 
@@ -51,7 +68,9 @@ pip install -e .
 
 ## Data Preparation
 
-Place your data under `barsegformer/data/my_dataset/`:
+### Training data
+
+Place your training data under `barsegformer/SegFormer/data/my_dataset/`:
 
 ```
 data/
@@ -64,16 +83,19 @@ data/
 
 > **Important:** Masks must be strictly binary (pixel values 0 or 1, not 0/255). If your masks were exported from Roboflow as JPEGs renamed to PNG, run a threshold pass before training: pixels > 127 → 1, else → 0.
 
-For running inference over the full dataset (to generate masks for CichlidID), structure your data as:
+### Inference data
+
+For running inference over the full dataset to generate masks for CichlidID, place your images under `barsegformer/SegFormer/data/main_dataset/` following this structure:
 
 ```
-data/main_data/
-├── F3/
-│   └── Tank_X/
-│       └── Fish_N/
-│           └── *.jpg
-└── F4-Cross/
-    └── ...
+data/
+└── main_dataset/
+    ├── F3/
+    │   └── Tank_X/
+    │       └── Fish_N/
+    │           └── *.jpg
+    └── F4-Cross/
+        └── ...
 ```
 
 ---
@@ -81,10 +103,10 @@ data/main_data/
 ## Training
 
 ```bash
-cd barsegformer
+cd barsegformer/SegFormer
 
 python tools/train.py \
-  local_configs/barsegformer/barsegformer.b1.512x512.py \
+  local_configs/segformer/B1/barSegFormer.b1.512x512.ade.20k.py \
   --launcher none \
   --work-dir work_dirs/barsegformer
 ```
@@ -108,11 +130,13 @@ python tools/train.py \
 Run segmentation over the full dataset to produce masks for the CichlidID pipeline:
 
 ```bash
+cd barsegformer/SegFormer
+
 python inference.py \
-  --config local_configs/barsegformer/barsegformer.b1.512x512.py \
+  --config local_configs/segformer/B1/barSegFormer.b1.512x512.ade.20k.py \
   --checkpoint work_dirs/barsegformer/iter_18000.pth \
-  --input-dir data/main_data \
-  --output-dir data/main_data/segmentations
+  --input-dir data/main_dataset \
+  --output-dir data/main_dataset/segmentations
 ```
 
 Output masks mirror the input folder tree with a `_seg.png` suffix appended to each filename.
@@ -124,7 +148,7 @@ Output masks mirror the input folder tree with a `_seg.png` suffix appended to e
 | Model | Best Iter | mIoU | Skin IoU | Bars IoU | mAcc | aAcc |
 |---|---|---|---|---|---|---|
 | SegFormer-B1 (baseline) | 16,000 | 87.14% | 97.31% | 76.97% | 92.00% | 97.53% |
-| **BarSegFormer** | **18,000** | **88.51%** | — | — | — | — |
+| **BarSegFormer** | **18,000** | **88.51%** | -- | -- | -- | -- |
 
 BarSegFormer reached the baseline's final mIoU by iteration 2,000, demonstrating significantly faster convergence.
 
