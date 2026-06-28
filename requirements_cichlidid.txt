@@ -1,0 +1,10 @@
+# Install PyTorch first (separately):
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+timm
+numpy
+Pillow
+opencv-python
+scikit-learn
+matplotlib
+tqdm
